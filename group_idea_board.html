@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Group Idea Board</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f7f9fc;
+}
+
+/* Main Container */
+
+.container{
+    width:700px;
+    margin:60px auto;
+}
+
+/* Header */
+
+.header{
+    background:#2c6ed5;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    border-radius:10px 10px 0 0;
+}
+
+/* Input area */
+
+.controls{
+    background:white;
+    padding:20px;
+    display:flex;
+    gap:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.controls select,
+.controls input{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.controls input{
+    flex:1;
+}
+
+button{
+    background:#2c6ed5;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1f4fa3;
+}
+
+/* Idea list */
+
+.ideaBoard{
+    background:white;
+    padding:20px;
+    border-radius:0 0 10px 10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Idea card */
+
+.idea{
+    background:#ffe6ef;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    position:relative;
+}
+
+.ideaText{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.ideaName{
+    position:absolute;
+    top:10px;
+    right:12px;
+    font-size:13px;
+    color:#444;
+}
+
+.ideaTime{
+    font-size:11px;
+    color:#666;
+    margin-top:6px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<div class="header">
+Group Idea Board
+</div>
+
+<div class="controls">
+
+<select id="name">
+<option>Select your name...</option>
+<option>Nimal</option>
+<option>Sara</option>
+<option>Alex</option>
+<option>You</option>
+</select>
+
+<input type="text" id="ideaInput" placeholder="Enter your idea here...">
+
+<button onclick="addIdea()">Add Idea</button>
+
+</div>
+
+<div class="ideaBoard" id="board">
+
+</div>
+
+</div>
+
+
+<script>
+
+function addIdea(){
+
+let name=document.getElementById("name").value;
+let idea=document.getElementById("ideaInput").value;
+
+if(idea.trim()=="" || name=="Select your name..."){
+alert("Please enter idea and name");
+return;
+}
+
+let time=new Date().toLocaleString();
+
+let ideaHTML=`
+<div class="idea">
+
+<div class="ideaText">${idea}</div>
+
+<div class="ideaName">${name}</div>
+
+<div class="ideaTime">${time}</div>
+
+</div>
+`;
+
+document.getElementById("board").innerHTML+=ideaHTML;
+
+document.getElementById("ideaInput").value="";
+
+}
+
+</script>
+
+</body>
+</html>
